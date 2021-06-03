@@ -1,0 +1,26 @@
+{
+    "name": "alannonat0/cadastro_viacep-api_php",
+    "description": "free ViaCep API test with php",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alan Nonato",
+            "email": "alan_nonato.silva@hotmail.com",
+            "role": "Back-End Developer"
+        }  
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Data\\": "data/"
+
+        },
+        "files": [
+            "config/config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "1.0.*"
+    }
+}
