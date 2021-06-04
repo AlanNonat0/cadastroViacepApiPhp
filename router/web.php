@@ -4,18 +4,20 @@ require_once __DIR__ . '../../vendor/autoload.php';
 use CoffeeCode\Router\Router;
 
 /**
- * instancia do router com a url padão
+ * router instance with base url
  */
 $router = new Router(URL_BASE);
 
 
 $router->namespace("App\controllers");
 $router->group(null);
+$router->get("/{endereco}", "ViaCepController:home");
 $router->get("/", "ViaCepController:home");
-//$router->post("/save", "ViaCepController:save");
+$router->post("/", "ViaCepController:home");
+$router->post("/save", "ViaCepController:save");
 
 /************
- * ERROS
+ * ERRORS
  ************/
 $router->group("ooops");
 $router->get("/{errcode}", "ViaCepController:error");

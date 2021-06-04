@@ -4,7 +4,7 @@
 <script type="text/javascript">
 // Mascara do cep
 $(document).ready(function () {
-  $('#find').mask('00000-00')
+  $('#cep').mask('00000-000')
 })
 </script>
 </body>

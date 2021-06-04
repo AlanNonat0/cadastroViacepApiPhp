@@ -2,43 +2,62 @@
 
 namespace Data;
 
-use Error;
 use Exception;
 
-class ViaCep extends Exception
+class ViaCep
 {
-    public string $cep;
-    public string $logradouro;
-    public string $bairro;
-    public string $cidade;
-    public string $estado;
-    public array $error;
+    private string $cep;
+    private string $publicPlace;
+    private string $district;
+    private string $city;
+    private string $state;
 
 
-    public function buscaPorCep($cep) : bool
+    /**
+     * search for zip code and assign values ​​to object
+     * @param $cep
+     * @return void
+     */
+    public function findCep($cep) : void
     {
 
-        try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://viacep.com.br/ws/{$cep}/json/");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $serv_out = curl_exec($ch);
-            $endereco = json_decode($serv_out, $assoc = true);
-            $this->setCep($endereco['cep']);
-            $this->setLogradouro($endereco['logradouro']);
-            $this->setBairro($endereco['bairro']);
-            $this->setCidade($endereco['localidade']);
-            $this->setEstado($endereco['uf']);
-            curl_close($ch);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://viacep.com.br/ws/{$cep}/json/");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $serv_out = curl_exec($ch);
+        $address = json_decode($serv_out, $assoc = true);
+        if (!empty($address)) {
 
-        } catch (\Throwable $th) {
-            $this->error = array('erro' => $th);
-            return false;
-        } finally {  
-            curl_close($ch);
+            $this->setCep($address["cep"]);
+            $this->setPublicPlace($address["logradouro"]);
+            $this->setDistrict($address["bairro"]);
+            $this->setCity($address["localidade"]);
+            $this->setState($address["uf"]);
+        } else {
+            throw new Exception("CEP Não encontrado", 1);
         }
+    }
 
-        return true;
+
+
+    /**
+     * Get the value of state
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set the value of state
+     *
+     * @return  self
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
     }
 
     /**
@@ -62,82 +81,63 @@ class ViaCep extends Exception
     }
 
     /**
-     * Get the value of logradouro
+     * Get the value of publicPlace
      */
-    public function getLogradouro()
+    public function getPublicPlace()
     {
-        return $this->logradouro;
+        return $this->publicPlace;
     }
 
     /**
-     * Set the value of logradouro
+     * Set the value of publicPlace
      *
      * @return  self
      */
-    public function setLogradouro($logradouro)
+    public function setPublicPlace($publicPlace)
     {
-        $this->logradouro = $logradouro;
+        $this->publicPlace = $publicPlace;
 
         return $this;
     }
 
     /**
-     * Get the value of bairro
+     * Get the value of district
      */
-    public function getBairro()
+    public function getDistrict()
     {
-        return $this->bairro;
+        return $this->district;
     }
 
     /**
-     * Set the value of bairro
+     * Set the value of district
      *
      * @return  self
      */
-    public function setBairro($bairro)
+    public function setDistrict($district)
     {
-        $this->bairro = $bairro;
+        $this->district = $district;
 
         return $this;
     }
 
     /**
-     * Get the value of cidade
+     * Get the value of city
      */
-    public function getCidade()
+    public function getCity()
     {
-        return $this->cidade;
+        return $this->city;
     }
 
     /**
-     * Set the value of cidade
+     * Set the value of city
      *
      * @return  self
      */
-    public function setCidade($cidade)
+    public function setCity($city)
     {
-        $this->cidade = $cidade;
+        $this->city = $city;
 
         return $this;
     }
 
-    /**
-     * Get the value of estado
-     */
-    public function getEstado()
-    {
-        return $this->estado;
-    }
-
-    /**
-     * Set the value of estado
-     *
-     * @return  self
-     */
-    public function setEstado($estado)
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
 }

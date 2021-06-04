@@ -7,36 +7,60 @@ require_once __DIR__ . "/components/header.php";
 
         <h3 class="text-white text-center">Cadastro</h3>
 
-        <form action="" method="post">
+        <!-- Form search -->
+        <form action="<?= url() ?>" method="post">
+        <?php
+        if (isset($_GET['route']) && $_GET['route'] == '/ceperror') : ?>
+            <div class="row mt-3">
+                <div class=" col-12">
+                    <div class="card form-control bg-danger">
+                        <h5 class="text-white text-center">CEP inválido</h5>
+                    </div>
+
+                </div>
+            </div>
+        <?php endif; ?>
             <div class="row mt-5">
                 <div class="col-lg-9 col-xl-9 col-sm-8 col-12">
-                    <input type="text" class="form-control mx-auto" placeholder="Digite seu Cep" name="find" id="find" onkeyup="cepmask()" />
+                    <input type="text" class="form-control mx-auto" placeholder="Digite seu Cep" name="cep" id="cep" />
                 </div>
 
                 <div class="col-lg-3 col-xl-3 col-sm-4 col-12">
-                
-                    <button type="submit" class="form-control btn btn-light pr-4" name="busca-caderno" value="search"><i class="bi bi-search"></i></button>
+
+                    <button type="submit" class="form-control btn btn-light pr-4" name="search" value="cep"><i class="bi bi-search"></i></button>
                 </div>
 
 
             </div>
         </form>
 
+        <!-- Form register -->
         <form action="" method="post">
+            <label for="name" class="text-white h5 mt-2">Nome:</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Informe aqui seu nome">
+            <div class="row mt-3">
+                <div class="col-lg-9 col-xl-9 col-sm-8 col-12">
+                    <label for="public-place" class="text-white h5">Logradouro:</label>
+                    <input type="text" name="public-place" id="public-place" class="form-control" placeholder="Informe o nome de sua Rua, avenida etc" <?php echo (isset($address) && !empty($address) ?  "value ='{$address->getPublicPlace()}' readonly" : null) ?> required>
 
+                </div>
+                <div class="col-lg-3 col-xl-3 col-sm-4 col-12">
+                    <label for="numb" class="text-white h5">Nº</label>
+                    <input type="text" name="numb" id="numb" class="form-control" placeholder="Número">
+                </div>
+            </div>
 
-            <label for="nome" class="text-white h5">Cep:</label>
-            <input type="text" name="nome" id="nome" class="form-control" placeholder="Informe seu nome completo" required>
+            <label for="district" class="text-white h5 mt-2">Bairro:</label>
+            <input type="text" name="district" id="district" class="form-control" placeholder="Informe aqui seu bairro" <?= isset($address) && !empty($address) ? "value ='{$address->getDistrict()}' readonly" : null ?> required>
 
-            <label for="email" class="text-white h5 mt-2">E-mail:</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Informe aqui seu e-mail" required>
+            <label for="city" class="text-white h5 mt-2">Cidade:</label>
+            <input type="tel" name="city" id="city" class="form-control" placeholder="Informe aqui sua cidade" <?= isset($address) && !empty($address) ? "value ='{$address->getCity()}' readonly" : null ?> required>
 
-            <label for="telefone" class="text-white h5 mt-2">Telefone:</label>
-            <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="Informe seu telefone" maxlength="13" required>
+            <label for="state" class="text-white h5 mt-2">Estado:</label>
+            <input type="text" name="state" id="state" class="form-control" placeholder="Digite seu estado" <?= isset($address) && !empty($address) ? "value ='{$address->getState()}' readonly" : null ?> required>
 
-
-            <label for="senha" class="text-white h5 mt-2">Senha:</label>
-            <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" maxlength="255" required>
+            <label for="complement" class="text-white h5 mt-2">complemento:</label>
+            <input type="text" name="complement" id="complement" class="form-control" placeholder="Complemento ex: casa 2">
 
             <div class="d-flex justify-content-center my-4">
                 <button type="submit" name="acao" value="register" id="acao" class="btn btn-lg btn-warning">Cadastrar</button>
