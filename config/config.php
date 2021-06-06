@@ -1,18 +1,18 @@
 <?php
-// Seta o local especifico do host
+# Define localhost
 require_once "ConfigUrl.php";
 
 $urlbase = ConfigUrl::protocol().$_SERVER['HTTP_HOST'].ConfigUrl::scriptName();
 define("URL_BASE", $urlbase);
 
-// Configuração de banco de dados
+# Data base config
 define("DATABASE_CONFIG", [
     "driver" => "mysql",
     "host" => "localhost",
     "port" => "3306",
-    "dbname" => "db_united_security",
+    "dbname" => "db_addresses",
     "username" => "root",
-    "passwd" => "",
+    "password" => "",
     "options" => [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -21,7 +21,7 @@ define("DATABASE_CONFIG", [
     ]
 ]);
 
-// Helper para pegar a URL_BASE.
+# Helper: get URL_BASE.
 /**
  * @param string|null $uri
  * @return string

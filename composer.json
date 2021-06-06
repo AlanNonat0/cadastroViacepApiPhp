@@ -1,12 +1,12 @@
 {
     "name": "alannonat0/cadastro_viacep-api_php",
-    "description": "free ViaCep API test with php",
+    "description": "Free ViaCep API test with php",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
             "name": "Alan Nonato",
-            "email": "alan_nonato.silva@hotmail.com",
+            "email": "developer.alan.nonato@gmail.com",
             "role": "Back-End Developer"
         }  
     ],

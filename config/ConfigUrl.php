@@ -5,16 +5,15 @@ class ConfigUrl
     public static function protocol()
     {
         /**
-         * Faz a verificação se for
-         * diferente de https
+         * Check if it is different from http
          */
         if (strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === false) {
-            $protocol = 'http://'; //Atribui o valor http
+            $protocol = 'http://'; # assign the value http
         } else {
-            $protocol = 'https://'; //Atribui o valor https
+            $protocol = 'https://'; # assign the value https
         }
         /**
-         * Retorna o protocolo em formato string
+         * Return the protocol in string format
          * @var string
          */
         return $protocol;
@@ -24,25 +23,24 @@ class ConfigUrl
     {
         /**
          * $scr
-         * Atribui o valor do SCRIPT_NAME em uma
-         * variável $scr e utiliza-se a função dirname()
-         * para remover qualquer nome de arquivo .html, .php, etc...
+         * Set the SCRIPT_NAME value to a $scr variable and 
+         * use the dirname() function to remove any filename .html, .php, etc...
          * @var string
          */
         $scr = dirname($_SERVER['SCRIPT_NAME']);
         /**
-         * Faz a contagem de barras que contém a url principal
-         * o objetivo aqui é pegar o nível de pasta onde hospeda-se o diretório
-         * caso ele exista.
+         * count the slashs of the main url and
+         * get the level of folders where the directory is hosted
+         * if it exists
          */
         if (empty($scr) || (substr_count($scr, '/') > 0) && strlen($scr) > 1) {
-            $scriptName = $scr . '/'; //atribui o valor do diretório com uma "/" na sequência
+            $scriptName = $scr . '/'; # assigns the value of the directory with a "/" at the end
 
         } else {
-            $scriptName = '/'; //atribui uma barra
+            $scriptName = '/'; # assigns a slash at the end
         }
         /**
-         * Retorna o scriptName em formato string
+         * Return the scriptName in string format
          * @var string
          */
         return $scriptName;
