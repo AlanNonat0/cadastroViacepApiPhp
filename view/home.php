@@ -15,11 +15,11 @@ require_once __DIR__ . "/components/states.php"; # States
             include_once __DIR__ . "/components/alerts.php";
             ?>
             <div class="row mt-5">
-                <div class="col-lg-9 col-xl-9 col-sm-8 col-12">
-                    <input type="text" class="form-control mx-auto" placeholder="Digite seu Cep" name="cep" id="cep" />
+                <div class="col-lg-9 col-xl-9 col-sm-8 col-9">
+                    <input type="text" class="form-control mx-auto" placeholder="Digite seu Cep" name="cep" id="cep" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Digite seu cep e clique em buscar"/>
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-sm-4 col-12">
+                <div class="col-lg-3 col-xl-3 col-sm-4 col-3">
 
                     <button type="submit" class="form-control btn btn-light pr-4" name="search" value="cep"><i class="bi bi-search"></i></button>
                 </div>
@@ -42,7 +42,7 @@ require_once __DIR__ . "/components/states.php"; # States
                 </div>
                 <div class="col-lg-3 col-xl-3 col-sm-4 col-12">
                     <label for="numb" class="text-white h5">Número</label>
-                    <input type="text" name="numb" id="numb" class="form-control" placeholder="Nº" required>
+                    <input type="text" name="numb" id="numb" class="form-control" placeholder="Nº" data-bs-toggle="tooltip" data-bs-placement="right" title="Para sem númerio digite 0" maxlength="5" required>
                 </div>
             </div>
 

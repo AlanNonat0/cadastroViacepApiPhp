@@ -19,5 +19,6 @@ CREATE TABLE `address` (
     `numb`          VARCHAR(10) NOT NULL,
     `district`      VARCHAR(50) NOT NULL,
     `city`          VARCHAR(50) NOT NULL,
-    `state`         VARCHAR(2)  NOT NULL
+    `state`         VARCHAR(2)  NOT NULL,
+    `complement`    VARCHAR(80)
 );

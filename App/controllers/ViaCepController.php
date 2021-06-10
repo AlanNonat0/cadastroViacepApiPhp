@@ -49,7 +49,7 @@ class ViaCepController
         $router = new Router(URL_BASE);
         if (isset($_POST['action']) && $request['action'] == "register") {
             foreach ($request as $key => $value) {
-                if (empty($value) && $key != 'complement') {
+                if (empty($value) && $key != 'complement' && $key != 'numb') {
                     $alert = "/emptyfield";
                     $router->redirect($alert);
                 }
@@ -68,6 +68,8 @@ class ViaCepController
      */
     public function error($request)
     {
+        $error = $request;
+         $title = "{$error['errcode']} | Consumo Api Via Cep";
         require __DIR__ . "/../../view/error.php";
     }
 }
